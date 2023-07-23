@@ -4217,3 +4217,30 @@ class FerriteTestnet(Ferrite):
         'enode2.ferritecoin.org s t',
         'enode3.ferritecoin.org s t',
     ]
+
+
+class BitBlocks(Coin):
+    NAME = "BitBlocks"
+    SHORTNAME = "BBK"
+    NET = "mainnet"
+    XPUB_VERBYTES = bytes.fromhex("022D2533")
+    XPRV_VERBYTES = bytes.fromhex("0221312B")
+    GENESIS_HASH = ('0000072fa90af55d6d2e8c4ddefef154'
+                    '787e152b85b37e8a1bcfd20daf88cb78')
+    P2PKH_VERBYTE = bytes.fromhex("19")
+    P2SH_VERBYTE = bytes.fromhex("55")
+    WIF_BYTE = bytes.fromhex("6b")
+    DESERIALIZER = lib_tx.DeserializerPIVX
+    TX_COUNT_HEIGHT = 2023262
+    TX_COUNT = 4223685
+    TX_PER_BLOCK = 1
+    RPC_PORT = 59768
+
+    PEERS = [
+    ]
+
+    @classmethod
+    def header_hash(cls, header):
+        '''Given a header return the hash.'''
+        import pivx_quark_hash
+        return pivx_quark_hash.getPoWHash(header)
